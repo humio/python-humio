@@ -46,9 +46,9 @@ class HumioApi:
         ingestLink = '%s/api/v1/dataspaces/%s/ingest' % (
             self.baseUrl, self.dataspace)
 
-        print(ingestLink)
         r = requests.post(ingestLink, data=json.dumps(jsonDt),
                           headers=self._getHeaders())
+
         print(r.text)
         pass
 
