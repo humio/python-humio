@@ -1,1 +1,4 @@
 __pycache__/
+*.pyc
+python_humio.egg-info/
+dist/

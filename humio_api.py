@@ -14,7 +14,7 @@ class HumioApi:
 
     def initQuery(self, queryString="timechart()", isLive=False, timeZoneOffsetMinutes=0,
                   showQueryEventDistribution=False, start='24h'):
-        queryjobsLink = '%s/api/v1/dataspaces/humio/queryjobs' % self.baseUrl
+        link = '%s/api/v1/dataspaces/humio/queryjobs' % self.baseUrl
 
         dt = {
             "queryString": queryString,
@@ -24,7 +24,7 @@ class HumioApi:
             "start": start
         }
 
-        r = requests.post(queryjobsLink, data=json.dumps(dt),
+        r = requests.post(link, data=json.dumps(dt),
                           headers=self._getHeaders())
 
         print(r.status_code)
@@ -33,25 +33,67 @@ class HumioApi:
         pass
 
     def getQueryResult(self, queryId):
-        pollQueryLink = '%s/api/v1/dataspaces/humio/queryjobs/%s' % (
+        link = '%s/api/v1/dataspaces/humio/queryjobs/%s' % (
             self.baseUrl, queryId)
 
-        r = requests.get(pollQueryLink,
+        r = requests.get(link,
                          headers=self._getHeaders())
         print(r.json())
         print(json.dumps(r.json(), indent=4, separators=(',', ': ')))
         pass
 
     def ingestJsonData(self, jsonDt=[]):
-        ingestLink = '%s/api/v1/dataspaces/%s/ingest' % (
+        link = '%s/api/v1/dataspaces/%s/ingest' % (
             self.baseUrl, self.dataspace)
 
-        r = requests.post(ingestLink, data=json.dumps(jsonDt),
+        r = requests.post(link, data=json.dumps(jsonDt),
                           headers=self._getHeaders())
 
         print(r.text)
         pass
 
+    # NOTE: user management
+    def getUserList(self):
+        link = '%s/api/v1/users' % self.baseUrl
+
+        r = requests.get(link, headers=self._getHeaders())
+        # self._preetyPrintJson(r.json())
+        return r.json()
+
+    def getUserByEmail(self, email):
+        for user in self.getUserList():
+            if email == user['email']:
+                return user
+        return None
+
+    def createUser(self, email, isRoot=False):
+        link = '%s/api/v1/users' % self.baseUrl
+
+        dt = {
+            'email': email,
+            'isRoot': isRoot
+        }
+
+        r = requests.post(link, data=json.dumps(dt),
+                          headers=self._getHeaders())
+        # self._preetyPrintJson(r.json())
+        pass
+
+    def deleteUserById(self, userId):
+        link = '%s/api/v1/users/%s' % (self.baseUrl, userId)
+
+        r = requests.delete(link, headers=self._getHeaders())
+        print(r.text)
+        pass
+
+    def deleteUserByEmail(self, email):
+        pass
+
+    # NOTE: helpers
+    def preetyPrintJson(jsonDt):
+        print(json.dumps(jsonDt, indent=4, separators=(',', ': ')))
+
+    # NOTE: private methods
     def _getHeaders(self):
         return {
             'Content-Type': 'application/json',
