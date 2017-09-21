@@ -1,0 +1,2 @@
+recursive-include humio_api *
+include README.md

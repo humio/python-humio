@@ -25,7 +25,7 @@ from setuptools.command.easy_install import easy_install as easy_install
 
 setup(
     name="python-humio",
-    version="0.0.1",
+    version="0.0.3",
     description="Pyhton Humio adapter.",
     long_description=open("README.md", 'r').read(),
     author="Sergey Grigorev",
