@@ -3,25 +3,7 @@
 
 import os
 from setuptools import setup, find_packages
-# from setuptools.command.easy_install import easy_install as base_easy_install
 from setuptools.command.easy_install import easy_install as easy_install
-
-
-# class easy_install(base_easy_install):
-#     """
-#     Private repo handler
-#     """
-#
-#     def finalize_options(self):
-#         auth = os.getenv("CHEESESHOP_AUTH", '')
-#         if auth and not auth.endswith('@'):
-#             auth += '@'
-#
-#         self.index_url = "http://{}lugati.eug:8083/simple".format(auth)
-#         self.no_find_links = True
-#
-#         base_easy_install.finalize_options(self)
-
 
 setup(
     name="python-humio",
