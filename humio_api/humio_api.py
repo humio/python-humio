@@ -24,30 +24,21 @@ class HumioApi:
             "start": start
         }
 
-        r = requests.post(link, data=json.dumps(dt),
-                          headers=self._getHeaders())
-
-        print(r.status_code)
-        print(r.json())
-        return r.json()['id']
+        return requests.post(link, data=json.dumps(dt),
+                             headers=self._getHeaders())
 
     def getQueryResult(self, queryId):
         link = '%s/api/v1/dataspaces/humio/queryjobs/%s' % (
             self.baseUrl, queryId)
 
-        r = requests.get(link,
-                         headers=self._getHeaders())
-        return r.json()
+        return requests.get(link, headers=self._getHeaders())
 
     def ingestJsonData(self, jsonDt=[]):
         link = '%s/api/v1/dataspaces/%s/ingest' % (
             self.baseUrl, self.dataspace)
 
-        r = requests.post(link, data=json.dumps(jsonDt),
-                          headers=self._getHeaders())
-
-        print(r.text)
-        pass
+        return requests.post(link, data=json.dumps(jsonDt),
+                             headers=self._getHeaders())
 
     # NOTE: user management
     def getUserList(self):

@@ -76,9 +76,11 @@ h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
              token='<YOUR_TOKEN>')
 
 # creating query
-queryId = h.initQuery(queryString='timechart()')
+initQueryRes = h.initQuery(queryString='timechart()')
 # getting query result
-res = h.getQueryResult(queryId)
-# printing json
-HumioApi.preetyPrintJson(res)
+if initQueryRes.status_code == 200:
+    res = h.getQueryResult(queryId)
+    # printing json
+    if res.status_code == 200:
+        HumioApi.preetyPrintJson(res.json())
 ```
