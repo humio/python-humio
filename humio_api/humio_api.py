@@ -29,8 +29,7 @@ class HumioApi:
 
         print(r.status_code)
         print(r.json())
-        self.getQueryResult(r.json()['id'])
-        pass
+        return r.json()['id']
 
     def getQueryResult(self, queryId):
         link = '%s/api/v1/dataspaces/humio/queryjobs/%s' % (
@@ -38,9 +37,7 @@ class HumioApi:
 
         r = requests.get(link,
                          headers=self._getHeaders())
-        print(r.json())
-        print(json.dumps(r.json(), indent=4, separators=(',', ': ')))
-        pass
+        return r.json()
 
     def ingestJsonData(self, jsonDt=[]):
         link = '%s/api/v1/dataspaces/%s/ingest' % (
@@ -57,7 +54,6 @@ class HumioApi:
         link = '%s/api/v1/users' % self.baseUrl
 
         r = requests.get(link, headers=self._getHeaders())
-        # self._preetyPrintJson(r.json())
         return r.json()
 
     def getUserByEmail(self, email):
@@ -76,18 +72,19 @@ class HumioApi:
 
         r = requests.post(link, data=json.dumps(dt),
                           headers=self._getHeaders())
-        # self._preetyPrintJson(r.json())
-        pass
+        return r.json()
 
     def deleteUserById(self, userId):
         link = '%s/api/v1/users/%s' % (self.baseUrl, userId)
 
         r = requests.delete(link, headers=self._getHeaders())
-        print(r.text)
-        pass
+        return r.json()
 
     def deleteUserByEmail(self, email):
-        pass
+        for user in self.getUserList():
+            if email == user['email']:
+                return self.deleteUserById(user['userID'])
+        return None
 
     # NOTE: helpers
     def preetyPrintJson(jsonDt):
