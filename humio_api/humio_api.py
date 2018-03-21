@@ -56,6 +56,17 @@ class HumioApi:
         return requests.post(link, data=json.dumps(jsonDt),
                              headers=self._getHeaders())
 
+    def ingestMessages(self, parser="json", messages=[]):
+        link = '%s/api/v1/dataspaces/%s/ingest-messages' % (
+            self.baseUrl, self.dataspace)
+        obj = [{
+            "type": parser,
+            "messages": messages
+        }]
+
+        return requests.post(link, data=json.dumps(obj),
+                             headers=self._getHeaders())
+
     # NOTE: user management
     def getUserList(self):
         link = '%s/api/v1/users' % self.baseUrl
