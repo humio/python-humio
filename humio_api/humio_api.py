@@ -14,7 +14,7 @@ class HumioApi():
 
     # experimental, for getting large files
     def initStreamingQuery(self, queryString='timechart()', isLive=False,
-                           timeZoneOffsetMinutes=0, start='24h', end='now'):
+                           timeZoneOffsetMinutes=0, start='24hours', end='now'):
 
         link = '{}/api/{}/dataspaces/humio/query'.format(self.baseUrl, versionNumberHumio)
 
@@ -31,7 +31,7 @@ class HumioApi():
 
     def initQuery(self, queryString='timechart()', isLive=False,
                   timeZoneOffsetMinutes=0, showQueryEventDistribution=False,
-                  start='24h', end='now'):
+                  start='24hours', end='now'):
 
         link = '{}/api/{}/dataspaces/humio/queryjobs'.format(self.baseUrl,versionNumberHumio)
 
