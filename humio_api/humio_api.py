@@ -110,7 +110,7 @@ class HumioApi():
         return None
 
     # NOTE: helpers
-    def preetyPrintJson(jsonDt):
+    def prettyPrintJson(jsonDt):
         print(json.dumps(jsonDt, indent=4, separators=(',', ': ')))
 
     # NOTE: private methods
