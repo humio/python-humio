@@ -15,14 +15,14 @@ h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
 # Get all users
 users = h.getUserList()
 
-# Preety print users list
-HumioApi.preetyPrintJson(users)
+# Pretty print users list
+HumioApi.prettyPrintJson(users)
 
 # Get user by email
 user = h.getUserByEmail('some@email.com')
 
-# Preety print user details
-HumioApi.preetyPrintJson(user)
+# Pretty print user details
+HumioApi.prettyPrintJson(user)
 
 # Create user
 api.createUser('some@email.com')
@@ -82,5 +82,5 @@ if initQueryRes.status_code == 200:
     res = h.getQueryResult(queryId)
     # printing json
     if res.status_code == 200:
-        HumioApi.preetyPrintJson(res.json())
+        HumioApi.prettyPrintJson(res.json())
 ```
