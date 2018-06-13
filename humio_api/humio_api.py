@@ -3,12 +3,13 @@ import json
 
 versionNumberHumio = 'v1'
 
+
 class HumioApi():
 
-    def __init__(self, baseUrl='localhost:3000', dataspace='humio',
+    def __init__(self, baseUrl='http://localhost:3000', dataspace='humio',
                  token='developer'):
 
-        self.baseUrl = "http://{}".format(baseUrl)
+        self.baseUrl = "{}".format(baseUrl)
         self.dataspace = dataspace
         self.token = token
 
@@ -16,7 +17,8 @@ class HumioApi():
     def initStreamingQuery(self, queryString='timechart()', isLive=False,
                            timeZoneOffsetMinutes=0, start='24hours', end='now'):
 
-        link = '{}/api/{}/dataspaces/humio/query'.format(self.baseUrl, versionNumberHumio)
+        link = '{}/api/{}/dataspaces/humio/query'.format(
+            self.baseUrl, versionNumberHumio)
 
         dt = {
             'queryString': queryString,
@@ -33,7 +35,8 @@ class HumioApi():
                   timeZoneOffsetMinutes=0, showQueryEventDistribution=False,
                   start='24hours', end='now'):
 
-        link = '{}/api/{}/dataspaces/humio/queryjobs'.format(self.baseUrl,versionNumberHumio)
+        link = '{}/api/{}/dataspaces/humio/queryjobs'.format(
+            self.baseUrl, versionNumberHumio)
 
         dt = {
             'queryString': queryString,
@@ -98,7 +101,8 @@ class HumioApi():
         return r
 
     def deleteUserById(self, userId):
-        link = '{}/api/{}/users/{}'.format(self.baseUrl, versionNumberHumio, userId)
+        link = '{}/api/{}/users/{}'.format(self.baseUrl,
+                                           versionNumberHumio, userId)
 
         r = requests.delete(link, headers=self._getHeaders())
         return r.json()
@@ -118,5 +122,4 @@ class HumioApi():
         return {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer {}'.format(self.token),
-#            'Accept-Encoding: gzip'
-}
+        }
