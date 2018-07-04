@@ -14,21 +14,15 @@ def printProgressBar(workDone):
 
 
 def main(args):
-    host = args.host
-    repo = args.repo
-    token = args.token
-    query = args.query
-    start = args.start
-    end = args.end
-    out = args.out
-
-    api = HumioApi(baseUrl=host, repo=repo,
-                   token=token)
-
-    # creating query
-    initQueryRes = api.initQuery(queryString=query)
+    api = HumioApi(baseUrl=args.host, repo=args.repo,
+                   token=args.token)
 
     print('Running query')
+    printProgressBar(0)
+
+    # creating query
+    initQueryRes = api.initQuery(
+        queryString=args.query, start=args.start, end=args.end)
 
     # getting query result
     if initQueryRes.status_code == 200:
@@ -50,7 +44,9 @@ def main(args):
                 break
         printProgressBar(100)
         print()
-        HumioApi.prettyPrintJson(res.json(), out)
+        HumioApi.prettyPrintJson(res.json(), args.out)
+    elif (initQueryRes.status_code > 400):
+        print('Wrong query!')
 
 
 if __name__ == '__main__':
