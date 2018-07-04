@@ -72,14 +72,15 @@ Query examples
 from humio_api.humio_api import HumioApi
 
 # Init the API
-h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
-             token='<YOUR_TOKEN>')
-
+api = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
+               token='<YOUR_TOKEN>')
+               
 # creating query
-initQueryRes = h.initQuery(queryString='timechart()')
+initQueryRes = api.initQuery(queryString='timechart()')
 # getting query result
 if initQueryRes.status_code == 200:
-    res = h.getQueryResult(queryId)
+    queryId = initQueryRes.json()['id']
+    res = api.getQueryResult(queryId)
     # printing json
     if res.status_code == 200:
         HumioApi.prettyPrintJson(res.json())
