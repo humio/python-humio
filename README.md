@@ -1,7 +1,31 @@
 
-Python Humio adapter
+Python Humio library
 ====================
+Example scripts
+--------------
+See the "examples" folder
 
+![run query script example](https://github.com/humio/python-humio/blob/master/img/example.gif)
+
+Query examples
+--------------
+```python
+from humio_api.humio_api import HumioApi
+
+# Init the API
+api = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
+               token='<YOUR_TOKEN>')
+
+# creating query
+initQueryRes = api.initQuery(queryString='timechart()')
+# getting query result
+if initQueryRes.status_code == 200:
+    queryId = initQueryRes.json()['id']
+    res = api.getQueryResult(queryId)
+    # printing json
+    if res.status_code == 200:
+        HumioApi.prettyPrintJson(res.json())
+```
 User management examples (only for local on prem install)
 ------------------------
 
@@ -64,24 +88,4 @@ jsonDt=[
 
 # Ingesting the data
 h.ingestJsonData(jsonDt)
-```
-
-Query examples
---------------
-```python
-from humio_api.humio_api import HumioApi
-
-# Init the API
-api = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
-               token='<YOUR_TOKEN>')
-               
-# creating query
-initQueryRes = api.initQuery(queryString='timechart()')
-# getting query result
-if initQueryRes.status_code == 200:
-    queryId = initQueryRes.json()['id']
-    res = api.getQueryResult(queryId)
-    # printing json
-    if res.status_code == 200:
-        HumioApi.prettyPrintJson(res.json())
 ```
