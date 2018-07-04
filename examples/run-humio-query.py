@@ -21,8 +21,12 @@ def main(args):
     printProgressBar(0)
 
     # creating query
+
+    start = int(args.start) if args.start.isdigit() else args.start
+    end = int(args.end) if args.end.isdigit() else args.end
+
     initQueryRes = api.initQuery(
-        queryString=args.query, start=args.start, end=args.end)
+        queryString=args.query, start=start, end=end)
 
     # getting query result
     if initQueryRes.status_code == 200:
@@ -45,8 +49,9 @@ def main(args):
         printProgressBar(100)
         print()
         HumioApi.prettyPrintJson(res.json(), args.out)
-    elif (initQueryRes.status_code > 400):
-        print('Wrong query!')
+    elif (initQueryRes.status_code >= 400):
+        print()
+        print('Error! Wrong query.')
 
 
 if __name__ == '__main__':
