@@ -6,14 +6,14 @@ versionNumberHumio = 'v1'
 
 class HumioApi():
 
-    def __init__(self, baseUrl='http://localhost:3000', dataspace='humio',
+    def __init__(self, baseUrl='http://localhost:3000', repo='humio',
                  token='developer'):
 
         self.baseUrl = "{}".format(baseUrl)
-        self.dataspace = dataspace
+        self.repo = repo
         self.token = token
 
-    # experimental, for getting large files
+    # NOTE: experimental, for getting large files
     def initStreamingQuery(self, queryString='timechart()', isLive=False,
                            timeZoneOffsetMinutes=0, start='24hours', end='now'):
 
@@ -58,14 +58,14 @@ class HumioApi():
 
     def ingestJsonData(self, jsonDt=[]):
         link = '{}/api/{}/dataspaces/{}/ingest'.format(
-            self.baseUrl, versionNumberHumio, self.dataspace)
+            self.baseUrl, versionNumberHumio, self.repo)
 
         return requests.post(link, data=json.dumps(jsonDt),
                              headers=self._getHeaders())
 
     def ingestMessages(self, parser="json", messages=[]):
         link = '{}/api/{}/dataspaces/{}/ingest-messages'.format(
-            self.baseUrl, versionNumberHumio, self.dataspace)
+            self.baseUrl, versionNumberHumio, self.repo)
         obj = [{
             "type": parser,
             "messages": messages
@@ -114,8 +114,13 @@ class HumioApi():
         return None
 
     # NOTE: helpers
-    def prettyPrintJson(jsonDt):
-        print(json.dumps(jsonDt, indent=4, separators=(',', ': ')))
+    def prettyPrintJson(jsonDt, out=None):
+        if out:
+            f = open(out, 'w')
+            json.dump(jsonDt, f, indent=4, separators=(',', ': '))
+            f.close()
+        else:
+            print(json.dumps(jsonDt, indent=4, separators=(',', ': ')))
 
     # NOTE: private methods
     def _getHeaders(self):
