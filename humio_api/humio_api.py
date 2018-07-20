@@ -128,3 +128,32 @@ class HumioApi():
             'Content-Type': 'application/json',
             'Authorization': 'Bearer {}'.format(self.token),
         }
+
+    # NOTE: files API
+
+    def uploadFile(self, filePath):
+        link = '{}/api/{}/dataspaces/{}/files'.format(
+            self.baseUrl, versionNumberHumio, self.repo)
+        headers = {
+            'Authorization': 'Bearer {}'.format(self.token),
+        }
+        return requests.post(link, files={'file': open(filePath, 'rb')},
+                             headers=headers)
+
+    def listFiles(self):
+        link = '{}/graphql'.format(self.baseUrl)
+        headers = self._getHeaders()
+        request = {
+            'query': 'query {{listUploadedFiles(name:\"{}\")}}'.format(self.repo),
+            'variables': None
+        }
+        result = requests.post(link, headers=headers, data = json.dumps(request))
+        return result.json()['data']['listUploadedFiles']
+
+    def getFile(self, fileName):
+        link = '{}/api/{}/dataspaces/{}/files/{}'.format(
+            self.baseUrl, versionNumberHumio, self.repo, fileName)
+        headers = {
+            'Authorization': 'Bearer {}'.format(self.token),
+        }
+        return requests.get(link, headers=headers)
