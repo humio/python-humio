@@ -13,7 +13,7 @@ Query examples
 from humio_api.humio_api import HumioApi
 
 # Init the API
-api = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
+api = HumioApi(baseUrl='https://cloud.humio.com', repo='<YOUR_REPO>',
                token='<YOUR_TOKEN>')
 
 # creating query
@@ -33,7 +33,7 @@ User management examples (only for local on prem install)
 from humio_api.humio_api import HumioApi
 
 # Init the API
-h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
+h = HumioApi(baseUrl='https://cloud.humio.com', repo='<YOUR_REPO>',
              token='<YOUR_TOKEN>')
 
 # Get all users
@@ -58,7 +58,7 @@ Data ingest examples
 from humio_api.humio_api import HumioApi
 
 # Init the API
-h = HumioApi(baseUrl='https://cloud.humio.com', dataspace='<YOUR_DATASPACE>',
+h = HumioApi(baseUrl='https://cloud.humio.com', repo='<YOUR_REPO>',
              token='<YOUR_TOKEN>')
 
 # some test data
