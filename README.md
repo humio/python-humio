@@ -1,6 +1,15 @@
 
 Python Humio library
 ====================
+
+
+This is still in early development. If you find something missing
+create an issue or contact us via
+[community.humio.com](https://community.humio.com) and let us know.
+
+Documentation for our API can be found [here](https://docs.humio.com/api/).
+
+
 Example scripts
 --------------
 See the "examples" folder
