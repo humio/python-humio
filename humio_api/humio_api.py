@@ -17,8 +17,8 @@ class HumioApi():
     def initStreamingQuery(self, queryString='timechart()', isLive=False,
                            timeZoneOffsetMinutes=0, start='24hours', end='now'):
 
-        link = '{}/api/{}/dataspaces/humio/query'.format(
-            self.baseUrl, versionNumberHumio)
+        link = '{}/api/{}/dataspaces/{}/query'.format(
+            self.baseUrl, versionNumberHumio, self.repo)
 
         dt = {
             'queryString': queryString,
@@ -35,8 +35,8 @@ class HumioApi():
                   timeZoneOffsetMinutes=0, showQueryEventDistribution=False,
                   start='24hours', end='now'):
 
-        link = '{}/api/{}/dataspaces/humio/queryjobs'.format(
-            self.baseUrl, versionNumberHumio)
+        link = '{}/api/{}/dataspaces/{}/queryjobs'.format(
+            self.baseUrl, versionNumberHumio, self.repo)
 
         dt = {
             'queryString': queryString,
@@ -51,8 +51,8 @@ class HumioApi():
                              headers=self._getHeaders())
 
     def getQueryResult(self, queryId):
-        link = '{}/api/{}/dataspaces/humio/queryjobs/{}'.format(
-            self.baseUrl, versionNumberHumio, queryId)
+        link = '{}/api/{}/dataspaces/{}/queryjobs/{}'.format(
+            self.baseUrl, versionNumberHumio, self.repo, queryId)
 
         return requests.get(link, headers=self._getHeaders())
 
