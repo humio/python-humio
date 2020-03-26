@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart()"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyMtH1CcmwLDcwCzIqyPQrC/TwzMzINPUp94tS0lEqLE0tqvTPC8tM
+        LQeqLcnMTU3OSCwq0dBUqgUAAAD//wMAlrWCwkAAAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:12:45 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
