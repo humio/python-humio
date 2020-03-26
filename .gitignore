@@ -1,7 +1,0 @@
-__pycache__/
-*.pyc
-python_humio.egg-info/
-dist/
-*.swp
-.ropeproject
-.DS_Store
