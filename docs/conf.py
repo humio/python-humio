@@ -28,18 +28,13 @@ extlinks = {
     "issue": ("https://github.com/humio/python-humio/issues/%s", "#"),
     "pr": ("https://github.com/humio/python-humio/pulls/%s", "PR #"),
 }
-import sphinx_py3doc_enhanced_theme
 
-html_theme = "sphinx_py3doc_enhanced_theme"
-html_theme_path = [sphinx_py3doc_enhanced_theme.get_html_theme_path()]
-html_theme_options = {"githuburl": "https://github.com/humio/python-humio/"}
 
-html_use_smartypants = True
-html_last_updated_fmt = "%b %d, %Y"
-html_split_index = False
-html_sidebars = {"**": ["searchbox.html", "globaltoc.html", "sourcelink.html"]}
-html_short_title = "%s-%s" % (project, version)
+import sphinx_rtd_theme
 
-napoleon_use_ivar = True
-napoleon_use_rtype = False
-napoleon_use_param = False
+extensions = [
+    "sphinx_rtd_theme",
+    "sphinx.ext.autodoc"
+]
+
+html_theme = "sphinx_rtd_theme"

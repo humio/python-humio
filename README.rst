@@ -22,7 +22,7 @@ Humiolib
 .. end-badges
 
 The `humiolib` library is a wrapper for Humio's web API, supporting easy interaction with Humio directly from Python. 
-Full documentation for this repository can be found at https://python-humio.readthedocs.io/en/latest/.
+Full documentation for this repository can be found at https://python-humio.readthedocs.io/en/latest/readme.html.
 
 
 Installation
