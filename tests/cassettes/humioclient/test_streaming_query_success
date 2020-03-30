@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart()"}'
+    headers:
+      Accept:
+      - application/x-ndjson
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/query
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIzXPWoDMRCG4T7H2DrF/EiamVzGEJMqkDRxZXL3rPESCBbRq27hY9Dq0Ujoup3O
+        n5ePr+1lk+15O71ezu9vty/t2aVnk9vYvp+u/wfLWXCIwaAqDN4Lruc4rGBFTxhsAYN9wODoMBhQ
+        ZiSVKSgTAmXinlvLhEKZMCgTDmWiQZnoUCYGlImAMpFUpqDMfRVBX6dAmVQokwZl0qFMNiiTHcrk
+        gDIZUCaTytzXe90zWVCmBMqUQpkyKFMOZapBmepQpgaUqeOUWl5xdTQNCFKZo+Sq4r51mIyKMhkV
+        YzIqzmRUGpNR6UxGZbCe0WN1lj2zB5mMSrKeUSkos/8NuthVFcqoQRl1KKMNymiHMsd2XMvogDIa
+        UEaTyhSUMYEyplDGDMqYQxlrUObo/7WMdShjA8pYQBlLKlNQxgXKuEIZNyjjDmWOA3ct4w3KeIcy
+        PqCMx0zGHh6Q6vsj8jb+XnE6S9aMpj2WbDKjGZOgzmjs8Zm7n3szm9ksj0tujdN8hjP7nfaL8wMA
+        AP//AwDquN/fjA8AAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/x-ndjson
+      Date:
+      - Wed, 25 Mar 2020 14:12:46 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+      humio-query-id:
+      - IQ-QsEVJQpWp9Tbh8nfvFze2X8J
+    status:
+      code: 200
+      message: OK
+version: 1

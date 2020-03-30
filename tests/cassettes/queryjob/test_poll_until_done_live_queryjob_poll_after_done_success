@@ -1,0 +1,240 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart()", "isLive": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '46'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyMtHNN3Er8UxOKihNrkj3DE2qcExxDjbO8whS0lEqLE0tqvTPC8tM
+        LQeqLcnMTU3OSCwq0dBUqgUAAAD//wMAuRg2OUAAAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:26:16 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-o4FtIcbpucxgIUbxAdCS3nHR
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAGyST0/DMAzFvwryERVpZRtjvW1sByQ4AEIcEJpC63bW0gQSh/FH++44bdchtJ5S
+        x7J/7738QK5MjlpjAVmptMcECmuw/8EPNOwhe35JoEZWC8UKsh9o6lc2GIZskAB+suvvmGrM18rJ
+        FbALCAm8hnyDvNLK86o9y106vhyno/FkEL9Dk39TZrUOtTL0HbGk76QmExj9v6aatCaBg+l+RKDM
+        h6pCz1icbamosIEQoLOWqEcpyf1nGYynw3bQLoGSNKO7C+i+ot73eHhgR6aSgacCQv7aSIfKmT4O
+        fpHJdShwgRoFYdm51zmLRuS0qi+Gk4t0mCbg13bbbGl6F+Rlx2tgsqbPgPzN3xWeG2vjHCGednOM
+        vUcfND8aJr04RChSyM+qymGlWDhjIAm8Wa1npeBDdj65HEnB2Ry9x2L+FX2OmfalvQqpNTYsj8jo
+        /DlG5hqueShLdA8SaTM8RnLbxZeKDWxZ6SfrNgKUwFY5I053724r5VbRYLf7BQAA//8DAKAxy6Wy
+        AgAA
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:26:16 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-o4FtIcbpucxgIUbxAdCS3nHR
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIzYz2+bMBQH8H9l8nGikp9tsM2tXXqYtB22atphmiJKnBSVQAemWVflf5/50bRd
+        0fjmlJAn+9kfHPLeI8uzKndl6TYs3WZl6yK2qSvHUt904b27d5VvWfrjka3zuqs8SxlnEVtfd/mt
+        6z9RbGIeW8n7FztG/w9MuAADicDAcUBgamHBEaUBA5UGA+MEDExiMFArMNCgMhaU0RyU0WPcsowm
+        UEYLUEZLUEYrUEbHoIxOQBmtQRltUBkLyoy7CBxXw0EZQ6CMEaCMkaCMUaCMiUEZk4AyRoMyxqAy
+        434vnxljQRnLQRlLoIwVoIyVoIxVoIyNQRmbgDJ2+pVafHLZ6dAAgajMNOTSiOHWwWSIEyZDXGAy
+        xCUmQ1xhMsRjTIZ4gp0ZmnZn8cyEQEyGuMHODHELyoTVQM9rIgJlSIAyJEEZUqAMxaDMdDsuy1AC
+        ypAGZcigMhaUERyUEQTKCAHKCAnKCAXKTOd/WUbEoIxIQBmhQRlhUBkLykgOykgCZaQAZaQEZaYf
+        3GUZqUAZGYMyMgFlpJ6TEW/qQpKhNuxfrx9xNBdp52jU2yEVn6NJZgJpjka8rV7D796czVyW00Nu
+        GUfJORwzk6UCcVT8hPMzYnvns1XmM5Y+jiX6h7E2tzqU7L99c/rSF3uX32RNX6n3FX1IYKzc12XW
+        +tdVPJ2mOAW1d1m1vun2WVX86TsEodp/ty+qzrv2eaQhaF+UZREaBWxad8S6Im273c613m3ODsVm
+        N7QL+oTOxoxOs2yL5t9cXnYU2LYovWu+dK556Bf8q39z5Zui2oUB34dEivZjFSKy3Bf3oXUx9TGK
+        Ki+7jVu50oUULqdOxvSlq8Jy+t4FqUTq8G9aRKy9qQ/DLEPsqmjDHNedL+rqecz208spWj9s7dQD
+        sdM4Vf3VtV3pv1W+KFdDN2WY9dhner7bNW6X+VOL5a4uy/NtSJ+lIk4oYndNnbu2dZuLh36f0/B3
+        hJIXl59Wkqho3IvLmbVMmzSXXjMkd9Ftt665Cq4s7W+bHubzhChCYROu1D4rv9fNbUgsYoesqcKO
+        972gcAMewuVxZeJ4/AsAAP//AwDS4pvYRRIAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:26:19 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-o4FtIcbpucxgIUbxAdCS3nHR
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIzYXW+bMBQG4L8y+XKiko9tsM1du/Ri0naxVdMupimixElRCXRgmnVV/vvMR9N2
+        RePNVT6O7GM/GHLOI8uzKndl6TYs3WZl6yK2qSvHUt904b27d5VvWfrjka3zuqs8SxlnEVtfd/mt
+        6z9RbGIeW8n7FztG/w9MuAADicDAcUBgamHBEaUBA5UGA+MEDExiMFArMNCgMhaU0RyU0WPcsowm
+        UEYLUEZLUEYrUEbHoIxOQBmtQRltUBkLyoy7CBxXw0EZQ6CMEaCMkaCMUaCMiUEZk4AyRoMyxqAy
+        434vnxljQRnLQRlLoIwVoIyVoIxVoIyNQRmbgDJ2ukstPrnsdGiAQFRmGnJpxHDpYDLECZMhLjAZ
+        4hKTIa4wGeIxJkM8wc4MTbuzeGZCICZD3GBnhrgFZcJqoOc1EYEyJEAZkqAMKVCGYlBmuhyXZSgB
+        ZUiDMmRQGQvKCA7KCAJlhABlhARlhAJlpvO/LCNiUEYkoIzQoIwwqIwFZSQHZSSBMlKAMlKCMtMN
+        d1lGKlBGxqCMTEAZqedkxJu6kGSoDfvX60cczUXaORr1dkjF52iSmUCaoxFvq9dw35uzmctyesgt
+        4yg5h2NmslQgjoqfcH5GbO98tsp8xtLHsUT/MNbmVoeS/bdvTj/6Yu/ym6zpK/W+og8JjJX7usxa
+        /7qKp9MUp6D2LqvWN90+q4o/fYcgVPvv9kXVedc+jzQE7YuyLEKjgE3rjlhXpG2327nWu83Zodjs
+        hnZBn9DZmNFplm3R/JvLy44C2xald82XzjUP/YJ/9W+ufFNUuzDg+5BI0X6sQkSW++I+tC6mPkZR
+        5WW3cStXupDC5dTJmH50VVhO37sglchQvZCIWHtTH4ZZhthV0YY5rjtf1NXzmO2nl1O0ftjaqQdi
+        p3Gq+qtru9J/q3xRroZuyjDrsc/0fLdr3C7zpxbLXV2W59uQPktFLClid02du7Z1m4uHfp/T8HeE
+        khdfP60kUdG4F5cza5k2aS69ZkjuottuXXMVXFnaXzY9zOcJMU5syMPXPiu/181tSCxih6ypwo73
+        vaBwAR7C1+PKxPH4FwAA//8DAJahmX1FEgAA
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:26:22 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: DELETE
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-o4FtIcbpucxgIUbxAdCS3nHR
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 25 Mar 2020 14:26:22 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 204
+      message: No Content
+version: 1
