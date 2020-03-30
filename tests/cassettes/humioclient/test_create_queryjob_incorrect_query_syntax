@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart(func=nowork)"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '41'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAACpILErMTS1JLVJIK81LVsgsVsjLL1EoLi0oyC8qSU1RyMwDS5Rk5ucplGTmpjpn
+        JBaVcCUkJHCBCAAAAAD//wMAfinKTj4AAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Date:
+      - Wed, 25 Mar 2020 14:12:46 GMT
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 400
+      message: Bad Request
+version: 1

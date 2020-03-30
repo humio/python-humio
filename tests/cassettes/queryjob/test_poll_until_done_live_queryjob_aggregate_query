@@ -1,0 +1,137 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart()", "isLive": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '46'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyMtHN9qgyyYtK8XKNKg3N9QouLiw1DPAPLzJW0lEqLE0tqvTPC8tM
+        LQeqLcnMTU3OSCwq0dBUqgUAAAD//wMAqnAbLEAAAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:37:37 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-kHz4nZdJEZuUmJSsqu1POWr3
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIzYz2+bMBQH8H9l8nGikp9tsM2tXXqYtB22atphmiJKnNQqgQ5Ms63q/z4TaNqu
+        SHxzyo8n+9kfDHnvgZVFXbqqchuWb4uqcwnbNLVjeWj7+N7duzp0LP/xwNZl09eB5YyzhK2v+/LW
+        DZ8oNSnPuODDiz0mC4FEYOA4IDCisOCI0oCBSoOBaQYGZikYqBUYaCQYaEEZzUEZPcYty2gCZbQA
+        ZbQEZbQCZXQKyugMlNEalNEGlbGgzLiLwCk0HJQxBMoYAcoYCcoYBcqYFJQxGShjNChjDCoz7vfy
+        mTEWlLEclLEEylgBylgJylgFytgUlLEZKGOnu9TiA8lOhwYIRGWmIZdGjJcOJkOcMBniApMhLjEZ
+        4gqTIZ5iMsQz7MzQtDuLZyYGYjLEDXZmiFtQJq4GegwTEShDApQhCcqQAmUoBWWmy3FZhjJQhjQo
+        QwaVsaCM4KCMIFBGCFBGSFBGKFBmOv/LMiIFZUQGyggNygiDylhQRnJQRhIoIwUoIyUoM91wl2Wk
+        AmVkCsrIDJSRek5GvCn3SMaSb3i9fsTRXKSdo1Fvh1R8jiabCaQ5GvG2KI33vTmbuSynh9wyjpJz
+        OGYmSwXiqBTEUdkTzs+E7V0oVkUoWP4wlugfxtrc6liy/w7t6cfg9668KdqhUh8q+pjpWLmvq6IL
+        r6t4Ok1xCuruinp90++L2v8dOgSx2n+393UfXPc80jFo76vKx0YBmzYoYb3Pu363c11wm7OD3+yO
+        7YIhobMxo9MsW9/+n8vLjgLb+iq49kvv2j/Dgn8Nb65C6+tdHPB9TMR3H+sYUZTB38fWxdTH8HVZ
+        9Ru3cpWLKVxOnYzpR1fH5Qy9C4rVfqqtFgnrbprDcZZj7Mp3cY7rPvimfh6z+/Ryii4ct3bqgWTT
+        OHXz1XV9Fb7VwVerYzflOOvjkOn5bte6XRFOLZa7pqrOtzF9lguTZgm7a5vSdZ3bXPwZ9jmP/1vo
+        5ddPK8lUMu7F5cxapk2aS689JnfRb7euvYquLB8umwHm84QoefzchKL63rS3Ma2EHYq2jvs9dILi
+        5XeIX4/rEo+P/wAAAP//AwCza1CuQxIAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:37:38 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: DELETE
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-kHz4nZdJEZuUmJSsqu1POWr3
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 25 Mar 2020 14:37:38 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 204
+      message: No Content
+version: 1

@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/users
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAABzKwQnAQAhE0VamqDQgRlgh6KLjJdVnyfW/fy1Dz96P2w0ZLgu6Cj0D3ojkX7P8
+        PQMTomrd4Dpa1jml9gEAAP//AwBkvPpgRQAAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Date:
+      - Wed, 25 Mar 2020 14:47:34 GMT
+      Server:
+      - nginx
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 403
+      message: Forbidden
+version: 1

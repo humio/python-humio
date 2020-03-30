@@ -1,0 +1,101 @@
+interactions:
+- request:
+    body: '{"queryString": "timechart()", "isLive": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '47'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyMtGtDPf0Ncr3dLLwriwr9vfNcTfIdnMtjUpT0lEqLE0tqvTPC8tM
+        LQeqLcnMTU3OSCwq0dBUqgUAAAD//wMA+rinBkAAAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:33:12 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-yWIM2oIB8KyvsOMlG0kFEuZf
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAIzYz2+bMBQH8H9l8nGikp9tsM2tXXqYtB22atphmiJKnBSVQAem2Vb1f58Jbtqu
+        SHxzyo8n+9kfDHnvgZVFU7q6dhuWb4u6dwnbtI1jue+G8N7du8b3LP/xwNZlOzSe5YyzhK2vh/LW
+        jZ8oNSnPuODjiz0mC4FEYOA0IDCisOCI0oCBSoOBaQYGZikYqBUYaCQYaEEZzUEZPcUty2gCZbQA
+        ZbQEZbQCZXQKyugMlNEalNEGlbGgzLSLwCk0HJQxBMoYAcoYCcoYBcqYFJQxGShjNChjDCoz7ffy
+        mTEWlLEclLEEylgBylgJylgFytgUlLEZKGPjXWrxgWTjoQECUZk45NKI4dLBZIgTJkNcYDLEJSZD
+        XGEyxFNMhniGnRmKu7N4ZkIgJkPcYGeGuAVlwmqgxzARgTIkQBmSoAwpUIZSUCZejssylIEypEEZ
+        MqiMBWUEB2UEgTJCgDJCgjJCgTLx/C/LiBSUERkoIzQoIwwqY0EZyUEZSaCMFKCMlKBMvOEuy0gF
+        ysgUlJEZKCP1nIx4U+6RDCXf+Hr9iKO5SDtHo94OqfgcTTYTSHM04m1RGu57czZzWcaH3DKOknM4
+        ZiZLBeKoFMRR2RPOz4TtnS9WhS9Y/jCV6B+m2tzqULL/9t3pR1/tXXlTdGOlPlb0IdOpcl/XRe9f
+        V/F0muIU1N8Vzfpm2BdN9XfsEIRq/92+agbv+ueRjkH7qq6r0ChgcYMSNlR5P+x2rvduc3aoNrtj
+        u2BM6GzK6DTLtur+z+VlR4Ftq9q77svguj/jgn+Nb658VzW7MOD7kEjVf2xCRFH66j60LmIfo2rK
+        eti4latdSOEydjLij64Jyxl7F2HV2gphbML6m/ZwnOUYu6r6MMf14Ku2eR6z//Ryit4ftzb2QGQc
+        p2m/un6o/bfGV/Xq2E05zvo4Znq+23VuV/hTi+WurevzbUg/jGO1CYJ3XVu6vnebiz/jRufhjwtl
+        L75+WkqmkmkzLmcWE3dpLr/umN3FsN267irAsny8bkaZz1FRyfC59UX9ve1uWS4Sdii6Jmz42AoK
+        198hfD0tTDw+/gMAAP//AwDuFXSIRBIAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:33:12 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

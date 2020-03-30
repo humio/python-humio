@@ -1,0 +1,112 @@
+interactions:
+- request:
+    body: '{"queryString": "", "isLive": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '36'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: POST
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyMtHN9MozDagoiijNDPTO986OcMxPS7RIdq9U0lEqLE0tqvTPC8tM
+        LQeq1VKqBQAAAP//AwDsoBFLNgAAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:33:12 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.22.0
+    method: GET
+    uri: https://cloud.humio.com/api/v1/dataspaces/sandbox/queryjobs/24-iJn5PxrXuiQKoKkXAofa8cGy
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Mar 2020 14:33:13 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
