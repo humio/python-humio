@@ -104,3 +104,4 @@ While the HumioClient can also be used for ingesting data, this is mainly meant 
   client.ingest_json_data(structured_data)
 
 
+
