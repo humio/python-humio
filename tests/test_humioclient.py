@@ -4,9 +4,8 @@ import os
 from humiolib import HumioClient, HumioIngestClient
 from humiolib.HumioExceptions import HumioHTTPException
 
-
-user_token = os.environ['HUMIO_USER_TOKEN']
-ingest_token = os.environ['HUMIO_INGEST_TOKEN']
+user_token = os.environ['HUMIO_USER_TOKEN'] if 'HUMIO_USER_TOKEN' in os.environ else "bogustoken"
+ingest_token = os.environ['HUMIO_INGEST_TOKEN'] if 'HUMIO_INGEST_TOKEN' in os.environ else "bogustoken"
 
 dirname = os.path.dirname(__file__)
 cassettedir = os.path.join(dirname, 'cassettes/humioclient')

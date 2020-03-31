@@ -4,8 +4,8 @@ import os
 from humiolib import HumioClient
 from humiolib.HumioExceptions import HumioQueryJobExhaustedException
 
-user_token = os.environ['HUMIO_USER_TOKEN']
-ingest_token = os.environ['HUMIO_INGEST_TOKEN']
+user_token = os.environ['HUMIO_USER_TOKEN'] if 'HUMIO_USER_TOKEN' in os.environ else "bogustoken"
+ingest_token = os.environ['HUMIO_INGEST_TOKEN'] if 'HUMIO_INGEST_TOKEN' in os.environ else "bogustoken"
 
 dirname = os.path.dirname(__file__)
 cassettedir = os.path.join(dirname, 'cassettes/queryjob/')
