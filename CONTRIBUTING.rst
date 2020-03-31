@@ -1,23 +1,19 @@
 ============
 Contributing
 ============
-Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given.
+Contributions are welcome, and they are greatly appreciated! 
+Every little bit helps, and credit will always be given.
 
 Ways To Contribute
 ==================
 There are many different ways, in which you may contribute to this project, including:
 
    * Opening issues by using the `issue tracker <https://github.com/humio/python-humio/issues>`_, using the correct issue template for your submission.
-   * Commenting on open issues.
+   * Commenting and expanding on open issues.
    * Propose fixes to open issues via a pull request.
 
 We suggest that you create an issue on GitHub before starting to work on a pull request, as this gives us a better overview, and allows us to start a conversation about the issue.
-We also encourage you to seperate unrelated contributions into seperate pull requests.
-
-
-
-
+We also encourage you to seperate unrelated contributions into seperate pull requests. This makes it easier for us to understand your individual contributions and faster at reviewing them.
 
 Setting Up `humiolib` For Local Development
 ===========================================
@@ -36,9 +32,9 @@ Setting Up `humiolib` For Local Development
 
     pip install -e . 
    
-   Now you can import `humiolib` into your Python scripts, and you can make changes locally.
+   Now you can import `humiolib` into your Python code, and you can make changes to the project locally.
 
-5. As your work progresses, regularly commit and push your branch to your own fork on GitHub::
+5. As your work progresses, regularly commit to and push your branch to your own fork on GitHub::
 
     git add .
     git commit -m "Your detailed description of your changes."
@@ -48,14 +44,14 @@ Setting Up `humiolib` For Local Development
 Running Tests locally
 =====================
 Testing is accomplished using the  `pytest <https://github.com/pytest-dev/pytest>`_ library. This should automatically be installed on your machine, when you install the `humiolib` package.
-To run tests locally simply execute the following command in the `tests` folder:
+To run tests simply execute the following command in the `tests` folder:
 
 .. code-block:: 
 
    pytest
 
 Humio API calls made during tests have been recorded using `vcr.py <https://github.com/kevin1024/vcrpy>`_ and can be found in the `tests/cassettes` folder.
-These will be *played back* while tests are running, so you do not need to set up a Humio instance to perform the tests.
+These will be *played back* when tests are run, so you do not need to set up a Humio instance to perform the tests.
 Please do not re-record cassettes unless you're really familiar with vcr.py.
 
 
@@ -79,13 +75,18 @@ Making A Pull Request
 When you have made your changes locally, or you want feedback on a work in progress, you're ready to make a pull request.
 Once your development branch has been pushed to GitHub, use the GitHub interface to create a pull request to the official repository.
 
-If your contribution has a larger impact on the codebase, you should do the following before submitting a new pull request.
+If your contribution involves more than a small bugfix, you should do the following before submitting a new pull request.
 
     1. Write new test cases if the old ones do not cover your new code.
     2. Update documentation if necessary.
-    3. Bump the minor version of of the project using `bump`.
+    3. Bump the minor version of the project by using bump2version::
+    
+        pip install bump2version
+        bump2version minor
+        
     4. Add a note to ``CHANGELOG.rst`` uncer the new project version.
     5. Add yourself to ``AUTHORS.rst``.
+
 
 Terms of Service For Contributers
 =================================

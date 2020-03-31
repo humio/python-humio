@@ -28,24 +28,22 @@ Vision
 ======
 The vision for `humiolib` is to create an opinionated wrapper around the Humio web API, supporting most if not all exposed endpoints. 
 The project does not simply expose web endpoints as Python methods, but attempts to improve upon the usability experience of the API.
-In addition the project seeks to add non-intrusive quality of life features, so that users can focus on their primary goals and don't need to handle specific errors or edge cases.
+In addition the project seeks to add non-intrusive quality of life features, so that users can focus on their primary goals.
 
 Governance
 ==========
 This project is maintained by employees at Humio ApS.
-As a general rule, only employees at Humio can become mainters and have commit privileges to the repository.
+As a general rule, only employees at Humio can become maintainers and have commit privileges to this repository.
 Therefore, if you want to contribute to the project, which we very much encourage, you must first fork the repository.
 Maintainers will have the final say on accepting or rejecting pull requests. 
-As a rule of thumb, pull requests will only be accepted if:
+As a rule of thumb, pull requests will be accepted if:
 
     * The constribution fits with the project's vision
     * All automated tests have passed
     * The contribution is of a quality comparable to the rest of the project
 
-If you're not sure if a pull request fits the project, please create an issue and describe your idea.
-
-The maintainers will attempt to react to issues and pull requests quickly, but their ability to do this can vary.
-If you haven't heard back from a maintaner within 7 days of creating an issue or making a pull request, please feel free to ping the relevant post.
+The maintainers will attempt to react to issues and pull requests quickly, but their ability to do so can vary.
+If you haven't heard back from a maintaner within 7 days of creating an issue or making a pull request, please feel free to ping them on the relevant post.
 
 The active maintainers involved with this project include:
     
