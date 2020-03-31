@@ -1,34 +1,26 @@
 ============
 Contributing
 ============
-
 Contributions are welcome, and they are greatly appreciated! Every
 little bit helps, and credit will always be given.
 
-Bug reports
-===========
+Ways To Contribute
+==================
+There are many different ways, in which you may contribute to this project, including:
 
-When `reporting a bug <https://github.com/humio/python-humio/issues>`_ please include:
+   * Opening issues by using the `issue tracker <https://github.com/humio/python-humio/issues>`_, using the correct issue template for your submission.
+   * Commenting on open issues.
+   * Propose fixes to open issues via a pull request.
 
-    * Your operating system name and version.
-    * Any details about your local setup that might be helpful in troubleshooting.
-    * Detailed steps to reproduce the bug.
+We suggest that you create an issue on GitHub before starting to work on a pull request, as this gives us a better overview, and allows us to start a conversation about the issue.
+We also encourage you to seperate unrelated contributions into seperate pull requests.
 
-Feature requests and feedback
-=============================
 
-The best way to send feedback is to file an issue at https://github.com/humio/python-humio/issues.
 
-If you are proposing a feature:
 
-* Explain in detail how it would work.
-* Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that code contributions are welcome :)
 
-Development
-===========
-
-To set up `humiolib` for local development:
+Setting Up `humiolib` For Local Development
+===========================================
 
 1. Fork `python-humio <https://github.com/humio/python-humio>`_
    (look for the "Fork" button).
@@ -40,46 +32,78 @@ To set up `humiolib` for local development:
 
     git checkout -b name-of-your-bugfix-or-feature
 
-   Now you can make your changes locally.
-
-   It migh make sense to install `humiolib` in edit mode as you develop.
-   You can do this entering the command ::
+4. Install `humiolib` from your local repository::
 
     pip install -e . 
+   
+   Now you can import `humiolib` into your Python scripts, and you can make changes locally.
 
-
-4. Commit your changes and push your branch to GitHub::
+5. As your work progresses, regularly commit and push your branch to your own fork on GitHub::
 
     git add .
     git commit -m "Your detailed description of your changes."
     git push origin name-of-your-bugfix-or-feature
 
-5. Submit a pull request through the GitHub website.
+
+Running Tests locally
+=====================
+Testing is accomplished using the  `pytest <https://github.com/pytest-dev/pytest>`_ library. This should automatically be installed on your machine, when you install the `humiolib` package.
+To run tests locally simply execute the following command in the `tests` folder:
+
+.. code-block:: 
+
+   pytest
+
+Humio API calls made during tests have been recorded using `vcr.py <https://github.com/kevin1024/vcrpy>`_ and can be found in the `tests/cassettes` folder.
+These will be *played back* while tests are running, so you do not need to set up a Humio instance to perform the tests.
+Please do not re-record cassettes unless you're really familiar with vcr.py.
 
 
-Pull Request Guidelines
-=======================
+Building Documentation From Source
+===================================
+If you're contributing to the documentation, you need to build the docs locally to inspect your changes.
 
-If you need some code review or feedback while you're developing the code just make a pull request.
-
-For merging, you should:
-
-1. Include passing tests.
-2. Update documentation when there's new API, functionality etc.
-3. Add a note to ``CHANGELOG.rst`` about the changes.
-4. Add yourself to ``AUTHORS.rst``.
-
-
-Build Documentation From Source
-===============================
-If you're contributing to the documentation, you may need to build the docs locally to inspect your changes.
-
-First make sure you have the dependencies installed::
+To do this, first make sure you have the documentation dependencies installed::
 
     pip install -r docs/requirements.txt
 
-Then build the html pages using sphinx::
+Once dependencies have been installed build the HTML pages using sphinx::
 
     sphinx-build -b html docs build/docs
 
 You should now find the generated HTML in ``build/docs``
+
+
+Making A Pull Request
+=====================
+When you have made your changes locally, or you want feedback on a work in progress, you're ready to make a pull request.
+Once your development branch has been pushed to GitHub, use the GitHub interface to create a pull request to the official repository.
+
+If your contribution has a larger impact on the codebase, you should do the following before submitting a new pull request.
+
+    1. Write new test cases if the old ones do not cover your new code.
+    2. Update documentation if necessary.
+    3. Bump the minor version of of the project using `bump`.
+    4. Add a note to ``CHANGELOG.rst`` uncer the new project version.
+    5. Add yourself to ``AUTHORS.rst``.
+
+Terms of Service For Contributers
+=================================
+For all contributions to this repository (software, bug fixes, configuration changes, documentation, or any other materials), we emphasize that this happens under GitHubs general Terms of Service and the license of this repository.
+
+Contributing as an individual
+*****************************
+If you are contributing as an individual you must make sure to adhere to:
+
+The `GitHub Terms of Service <https://help.github.com/en/github/site-policy/github-terms-of-service>`_ **Section D. User-Generated Content,** `Subsection: 6. Contributions Under Repository License <https://help.github.com/en/github/site-policy/github-terms-of-service#6-contributions-under-repository-license>`_ :
+
+*Whenever you make a contribution to a repository containing notice of a license, you license your contribution under the same terms, and you agree that you have the right to license your contribution under those terms. If you have a separate agreement to license your contributions under different terms, such as a contributor license agreement, that agreement will supersede.
+Isn't this just how it works already? Yep. This is widely accepted as the norm in the open-source community; it's commonly referred to by the shorthand "inbound=outbound". We're just making it explicit."*
+
+Contributing on behalf of a Corporation
+***************************************
+If you are contributing on behalf of a Corporation you must make sure to adhere to:
+
+The `GitHub Corporate Terms of Service <https://help.github.com/en/github/site-policy/github-corporate-terms-of-service>`_ **Section D. Content Responsibility; Ownership; License Rights,** `subsection 5. Contributions Under Repository License <https://help.github.com/en/github/site-policy/github-corporate-terms-of-service#5-contributions-under-repository-license>`_:
+
+*Whenever Customer makes a contribution to a repository containing notice of a license, it licenses such contributions under the same terms and agrees that it has the right to license such contributions under those terms. If Customer has a separate agreement to license its contributions under different terms, such as a contributor license agreement, that agreement will supersede*
