@@ -22,7 +22,7 @@ def read(*names, **kwargs):
 
 setup(
     name="humiolib",
-    version="0.2.0",
+    version="0.2.1",
     license="Apache-2.0",
     description="Python SDK for connecting to Humio",
     long_description="%s\n%s"

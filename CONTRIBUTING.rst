@@ -13,7 +13,7 @@ There are many different ways, in which you may contribute to this project, incl
    * Propose fixes to open issues via a pull request.
 
 We suggest that you create an issue on GitHub before starting to work on a pull request, as this gives us a better overview, and allows us to start a conversation about the issue.
-We also encourage you to seperate unrelated contributions into seperate pull requests. This makes it easier for us to understand your individual contributions and faster at reviewing them.
+We also encourage you to separate unrelated contributions into different pull requests. This makes it easier for us to understand your individual contributions and faster at reviewing them.
 
 Setting Up `humiolib` For Local Development
 ===========================================
@@ -67,28 +67,30 @@ Once dependencies have been installed build the HTML pages using sphinx::
 
     sphinx-build -b html docs build/docs
 
-You should now find the generated HTML in ``build/docs``
+You should now find the generated HTML in ``build/docs``.
 
 
 Making A Pull Request
 =====================
-When you have made your changes locally, or you want feedback on a work in progress, you're ready to make a pull request.
-Once your development branch has been pushed to GitHub, use the GitHub interface to create a pull request to the official repository.
+When you have made your changes locally, or you want feedback on a work in progress, you're almost ready to make a pull request.
 
-If your contribution involves more than a small bugfix, you should do the following before submitting a new pull request.
+Before you create the pull request, inspect your contribution and go through the following checklist:
 
     1. Write new test cases if the old ones do not cover your new code.
     2. Update documentation if necessary.
-    3. Bump the minor version of the project by using bump2version::
-    
+    3. Bump the version of the project by using bump2version. Use `patch` for bug fixes and `minor` for new depending upon scope of the contribution::
+
         pip install bump2version
-        bump2version minor
+        bump2version {patch or minor}
         
-    4. Add a note to ``CHANGELOG.rst`` uncer the new project version.
+    4. Add a note to ``CHANGELOG.rst`` under the new version, which describes your contribution.
     5. Add yourself to ``AUTHORS.rst``.
 
+When you've been through the list, push your final changes to your development branch on Github.
+Afterwards, use the GitHub interface to create a pull request to the official repository.
 
-Terms of Service For Contributers
+
+Terms of Service For Contributors
 =================================
 For all contributions to this repository (software, bug fixes, configuration changes, documentation, or any other materials), we emphasize that this happens under GitHubs general Terms of Service and the license of this repository.
 
