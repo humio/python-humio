@@ -74,11 +74,16 @@ Making A Pull Request
 =====================
 When you have made your changes locally, or you want feedback on a work in progress, you're almost ready to make a pull request.
 
-Before you create the pull request, inspect your contribution and go through the following checklist:
+If you have only touched the documentation in your pull request, please go through the following checklist:
+
+    1. Add a note to ``CHANGELOG.rst`` under the current version, which describes your contribution.
+    2. Add yourself to ``AUTHORS.rst``.
+
+If you have changed part of the codebase in your pull request, please go through this other checklist instead:
 
     1. Write new test cases if the old ones do not cover your new code.
     2. Update documentation if necessary.
-    3. Bump the version of the project by using bump2version. Use `patch` for bug fixes and `minor` for new depending upon scope of the contribution::
+    3. Bump the version of the project by using bump2version. Use `patch` for bug fixes and `minor` for new features::
 
         pip install bump2version
         bump2version {patch or minor}
@@ -86,7 +91,7 @@ Before you create the pull request, inspect your contribution and go through the
     4. Add a note to ``CHANGELOG.rst`` under the new version, which describes your contribution.
     5. Add yourself to ``AUTHORS.rst``.
 
-When you've been through the list, push your final changes to your development branch on Github.
+When you've been through the applicable checklist, push your final changes to your development branch on GitHub.
 Afterwards, use the GitHub interface to create a pull request to the official repository.
 
 
