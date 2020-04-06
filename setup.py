@@ -34,7 +34,7 @@ setup(
     ),
     long_description_content_type = "text/x-rst",
     author="Humio ApS",
-    author_email="alexanderbrandborg@humio.com",
+    author_email="integrations@humio.com",
     url="https://github.com/humio/python-humio",
     packages=find_packages("src"),
     package_dir={"": "src"},
