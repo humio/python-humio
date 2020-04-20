@@ -120,10 +120,17 @@ class BaseQueryJob():
 
         poll_result = self._fetch_next_segment(link, headers, **kwargs)
         
-        # If an aggregate query has not completed, the unfinished result will be returned.
-        # We choose to be opinionated on this and query Humio until such a query is done.
-        while self._aggregate_query_is_not_done(poll_result.metadata):
-            poll_result = self._fetch_next_segment(link, headers, **kwargs)
+        if poll_result.metadata["isAggregate"]:
+            # If an aggregate query has not completed, the unfinished result will be returned.
+            # We choose to be opinionated on this and query Humio until such a query is done.
+            while self._aggregate_query_is_not_done(poll_result.metadata):
+                poll_result = self._fetch_next_segment(link, headers, **kwargs)
+        
+        # Streaming
+        else:
+            if poll_result.metadata["workDone"] == 0 and not self.is_done:
+                poll_result = self._fetch_next_segment(link, headers, **kwargs)
+
 
         return poll_result
     
