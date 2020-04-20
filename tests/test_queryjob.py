@@ -61,8 +61,8 @@ def test_poll_until_done_live_queryjob_aggregate_query(humioclient):
     queryjob = humioclient.create_queryjob("timechart()", is_live=True)
     
     events = []
-    for pollResult in queryjob.poll_until_done():
-        events.extend(pollResult.events)
+    for poll_events in queryjob.poll().events:
+        events.extend(poll_events)
     
     assert len(events) != 0
 
@@ -71,8 +71,8 @@ def test_poll_until_done_live_queryjob_non_aggregate_query(humioclient):
     queryjob = humioclient.create_queryjob("", is_live=True)
     
     events = []
-    for pollResult in queryjob.poll_until_done():
-        events.extend(pollResult.events)
+    for poll_events in queryjob.poll().events:
+        events.extend(poll_events)
     
     assert len(events) != 0
 
@@ -81,11 +81,11 @@ def test_poll_until_done_live_queryjob_poll_after_done_success(humioclient):
     queryjob = humioclient.create_queryjob("timechart()", is_live=True)
     
     first_poll_events = []
-    for pollResult in queryjob.poll_until_done():
-        first_poll_events.extend(pollResult.events)
+    for poll_events in queryjob.poll().events:
+        first_poll_events.extend(poll_events)
 
     second_poll_events = []
-    for pollResult in queryjob.poll_until_done():
-        second_poll_events.extend(pollResult.events)
+    for poll_events in queryjob.poll().events:
+        second_poll_events.extend(poll_events)
         
     assert len(second_poll_events) != 0
