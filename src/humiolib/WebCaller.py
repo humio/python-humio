@@ -21,6 +21,7 @@ class WebCaller:
         self.base_url = base_url
         self.rest_url = "{}/api/{}/".format(self.base_url, self.version_number_humio)
         self.graphql_url = "{}/graphql".format(self.base_url)
+        self.session = requests.Session()
 
     def call_rest(self, verb, endpoint, headers=None, data=None, files=None, stream=False, **kwargs):
         """
@@ -83,7 +84,7 @@ class WebCaller:
         :rtype: Response Object
         """
         try:
-            response = requests.request(
+            response = self.session.request(
                 verb, link, data=data, headers=headers, stream=stream, files=files, **kwargs
             )
             response.raise_for_status()
