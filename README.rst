@@ -26,7 +26,7 @@ Full documentation for this repository can be found at https://python-humio.read
  
 Vision
 ======
-The vision for `humiolib` is to create an opinionated wrapper around the Humio web API, supporting most if not all exposed endpoints.
+The vision for `humiolib` is to create an opinionated wrapper around the Humio web API, supporting log ingestion and log queries.
 The project does not simply expose web endpoints as Python methods, but attempts to improve upon the usability experience of the API.
 In addition the project seeks to add non-intrusive quality of life features, so that users can focus on their primary goals during development.
  
