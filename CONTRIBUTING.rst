@@ -46,7 +46,7 @@ Running Tests locally
 Testing is accomplished using the  `pytest <https://github.com/pytest-dev/pytest>`_ library. This should automatically be installed on your machine, when you install the `humiolib` package.
 To run tests simply execute the following command in the `tests` folder:
 
-.. code-block:: 
+.. code-block:: bash
 
    pytest
 
@@ -84,6 +84,52 @@ If you have only changed the documentation you only need to add yourself to ``AU
 
 When you've been through the applicable checklist, push your final changes to your development branch on GitHub.
 Afterwards, use the GitHub interface to create a pull request to the official repository.
+
+
+Publishing the Library to PyPI
+==============================
+This section describes the manual process of publishing this library to PyPI. 
+This is a task only done by maintainers of the repository, and it is always done from the ``master`` branch.
+
+Before the package can be published, you need to bump  the semantic version of the library. This is done using the program ``bump2version``, which can be installed as such:
+
+.. code-block:: bash
+
+   pip3 install bump2version
+
+You can now bump the library to either a new patch, minor or major version, using the following command:
+
+.. code-block:: bash
+
+   bumpversion (patch | minor | major)
+
+This will bump the version across library as specified in ``.bumpversion.cfg``.
+
+Once the version has been bumped, add a descriptive entry to ``CHANGELOG.rst`` about what has changed in the new version of the library. 
+
+You will not need to change any more tracked files during the publishing process, so create a new commit to encompass the changes made by your version bump now.
+
+To build the library into a package run:
+
+.. code-block:: bash
+
+    python3 setup.py bdist_wheel sdist
+
+This will create a build and source distribution of the library within the ``/dist`` folder.
+
+To upload these files to PyPI you need to install ``twine``, which can be done using the following command:
+
+.. code-block:: bash
+
+    pip3 install twine
+
+Now upload the contents of ``/dist`` to PyPI by entering the following command and following the prompt on the screen:
+
+.. code-block:: bash
+
+    twine upload dist/*
+
+Congratulations! The new version of the package should now be live on PyPI for all to enjoy.
 
 Terms of Service For Contributors
 =================================

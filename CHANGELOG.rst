@@ -20,3 +20,21 @@ Changed:
 Removed:
 
     * A few configuration files left over from earlier versions
+
+
+0.2.2 (2020-05-19)
+******************
+Bugfixing to ensure that static queryjobs can be polled for all their results
+
+Added:
+
+    * Static queryjobs can now be queried for more than one segment
+    
+
+Changed:
+
+    * Upon polling from a QueryJob it will now stall until it can poll data from Humio, ensuring that an empty result is not returned prematurely.
+
+Removed:
+
+    * The poll_until_done method has been removed from live query jobs, as this does not make conceptual sense to do, in the same manner as a static query job.
