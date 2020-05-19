@@ -22,6 +22,7 @@ class WebCaller:
         self.rest_url = "{}/api/{}/".format(self.base_url, self.version_number_humio)
         self.graphql_url = "{}/graphql".format(self.base_url)
 
+
     def call_rest(self, verb, endpoint, headers=None, data=None, files=None, stream=False, **kwargs):
         """
         Call one of Humio's REST endpoints

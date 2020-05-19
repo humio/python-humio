@@ -77,18 +77,23 @@ It is mainly used for performing queries, as well as managing different aspects 
        repository= "sandbox",
        user_token="*****")
  
-  # Using a streaming query
-  webStream = client.streaming_query("timechart()")
+  # Using a streaming query 
+  webStream = client.streaming_query("Login Attempt Failed", is_live=True)
   for event in webStream:
       print(event)
  
-  # Using a queryjob
-  queryjob = client.create_queryjob("timechart()")
+  # Using a queryjob 
+  queryjob = client.create_queryjob("Login Attempt Failed", is_live=True)
+  poll_result = queryjob.poll()
+  for event in poll_result.events:
+      print(event)
+
+  # With a static queryjob you can poll it iterativly until it has been exhausted
+  queryjob = client.create_queryjob("Login Attempt Failed", is_live=False)
   for poll_result in queryjob.poll_until_done():
       print(poll_result.metadata)
       for event in poll_result.events:
               print(event)
- 
  
 HumioIngestClient
 *****************

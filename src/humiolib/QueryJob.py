@@ -29,10 +29,11 @@ class BaseQueryJob():
         user_token (string): Token used to access resource
         """
         self.query_id = query_id
-        self.is_done = False
-        self.is_cancelled = False
+        self.segment_is_done = False
+        self.segment_is_cancelled = False
+        self.more_segments_can_be_polled = True
         self.time_at_last_poll = 0
-        self.wait_time = 0
+        self.wait_time_until_next_poll = 0
         self.base_url = base_url
         self.repository = repository
         self.user_token = user_token
@@ -56,8 +57,8 @@ class BaseQueryJob():
         This will always pass on the first poll to the queryjob.
         """
         time_since_last_poll = time.time() - self.time_at_last_poll
-        if(time_since_last_poll < self.wait_time):
-            time.sleep((self.wait_time - time_since_last_poll) / 1000.0) 
+        if(time_since_last_poll < self.wait_time_until_next_poll):
+            time.sleep((self.wait_time_until_next_poll - time_since_last_poll) / 1000.0) 
 
     def _fetch_next_segment(self, link, headers, **kwargs):
         """
@@ -87,24 +88,24 @@ class BaseQueryJob():
             else:
                 raise e
 
-        self.wait_time = response["metaData"]["pollAfter"]
-        self.is_done = response["done"] 
-        self.is_cancelled = response["cancelled"]
+        self.wait_time_until_next_poll = response["metaData"]["pollAfter"]
+        self.segment_is_done = response["done"] 
+        self.segment_is_cancelled = response["cancelled"]
         self.time_at_last_poll = time.time()
 
         return PollResult(response["events"], response["metaData"])
 
-    def _aggregate_query_is_not_done(self, metadata):
+    def _is_streaming_query(self, metadata):
         """
-        Checks to see if a given aggregate query has been completed
+        Checks whether the query is a streaming query and not an aggregate
 
-        :param metadata: poll result metadata.
+        :param metaData: query response metadata.
         :type metadata: dict
 
-        :return: Answer question posed
-        :rtype: bool
+        :return: Answer to whether query is of type streaming
+        :rtype: Bool
         """
-        return metadata["isAggregate"] and metadata["workDone"] != metadata["totalWork"]
+        return not metadata["isAggregate"]
 
     def poll(self, **kwargs):
         """
@@ -119,22 +120,15 @@ class BaseQueryJob():
         headers.update(kwargs.pop("headers", {}))
 
         poll_result = self._fetch_next_segment(link, headers, **kwargs)
-        
-        # If an aggregate query has not completed, the unfinished result will be returned.
-        # We choose to be opinionated on this and query Humio until such a query is done.
-        while self._aggregate_query_is_not_done(poll_result.metadata):
+        while not self.segment_is_done: # In case the segment hasn't been completed, we poll until is is
             poll_result = self._fetch_next_segment(link, headers, **kwargs)
+    
+        if self._is_streaming_query(poll_result.metadata):
+            self.more_segments_can_be_polled = poll_result.metadata["extraData"]["hasMoreEvents"] == 'true'
+        else: # is aggregate query
+            self.more_segments_can_be_polled = False
 
         return poll_result
-    
-    def poll_until_done(self):
-        """
-        Create generator for yielding poll results
-
-        :return: A generator for query results
-        :rtype: Generator
-        """
-        yield self.poll()
 
 
 class StaticQueryJob(BaseQueryJob):
@@ -161,9 +155,22 @@ class StaticQueryJob(BaseQueryJob):
         :return: A data object that contains events of the polled segment and metadata about the poll
         :rtype: PollResult
         """
-        if self.is_done:
+        if not self.more_segments_can_be_polled:
             raise HumioQueryJobExhaustedException()
+        
         return super().poll()
+
+    def poll_until_done(self):
+        """
+        Create generator for yielding poll results
+
+        :return: A generator for query results
+        :rtype: Generator
+        """
+
+        yield self.poll()
+        while self.more_segments_can_be_polled:
+            yield self.poll()
 
 
 class LiveQueryJob(BaseQueryJob):
@@ -193,5 +200,5 @@ class LiveQueryJob(BaseQueryJob):
             headers = self._default_user_headers
             endpoint = "dataspaces/{}/queryjobs/{}".format(self.repository, self.query_id)
             self.webcaller.call_rest("delete", endpoint, headers)
-        except HumioHTTPException: # If the queryjob doesn't exists, we don't want to halt on the exception
+        except HumioHTTPException: # If the queryjob doesn't exists anymore, we don't want to halt on the exception
             pass 
