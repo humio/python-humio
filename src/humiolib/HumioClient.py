@@ -180,9 +180,9 @@ class HumioClient(BaseHumioClient):
         :param query_string: Humio query
         :type query_string: str
         :param start: Starting time of query
-        :type start: str, optional
+        :type start: Union[int, str], optional
         :param end: Ending time of query
-        :type end: str, optional
+        :type end: Union[int, str], optional
         :param is_live: Ending time of query
         :type is_live: bool, optional
         :param is_live: Timezone offset in minutes
@@ -235,9 +235,9 @@ class HumioClient(BaseHumioClient):
         :param query_string: Humio query
         :type query_string: str
         :param start: Starting time of query
-        :type start: str, optional
+        :type start: Union[int, str], optional
         :param end: Ending time of query
-        :type end: str, optional
+        :type end: Union[int, str], optional
         :param is_live: Ending time of query
         :type is_live: bool, optional
         :param is_live: Timezone offset in minutes
@@ -614,11 +614,11 @@ class HumioIngestClient(BaseHumioClient):
         Ingest structured json data to repository.
         Structure of ingested data is discussed in: https://docs.humio.com/api/ingest/#structured-data
 
-        Parameters:
-        json_elements (convertable to json string): Structured data that can be converted to a json string.
-
-        Returns:
-        string : response to web request as json string
+        :param json_elements: Structured data that can be parsed to a json string.
+        :type json_elements: str
+        
+        :return: Response to web request as json string
+        :rtype: str
         """
 
         if json_elements is None:
