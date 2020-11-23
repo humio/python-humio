@@ -92,7 +92,6 @@ class WebCaller:
             raise HumioConnectionException(e) 
         except HTTPError as e:
             raise HumioHTTPException(e.response.text, e.response.status_code)
-            #e.response.url
         except TimeoutError as e:
             raise HumioTimeoutException(e)
         
