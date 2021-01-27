@@ -185,8 +185,8 @@ class HumioClient(BaseHumioClient):
         :type end: Union[int, str], optional
         :param is_live: Ending time of query
         :type is_live: bool, optional
-        :param is_live: Timezone offset in minutes
-        :type is_live: int, optional
+        :param timezone_offset_minutes: Timezone offset in minutes
+        :type timezone_offset_minutes: int, optional
         :param argument: Arguments specified in query
         :type argument: dict(string->string), optional
         :param raw_data: Additional arguments to add to POST body under other keys
