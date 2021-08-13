@@ -15,8 +15,9 @@ Contributors (alpha by username)
 ********************************
 
 * Anders Fogh Eriksen `@Fogh <https://github.com/Fogh>`_
+* Hanne Moa `@hmpf <https://github.com/hmpf>`_
 * Kristian Gausel `@KGausel <https://github.com/KGausel>`_
 * Peter Mechlenborg `@pmech <https://github.com/pmech>`_
 * Sam `@samgdf <https://github.com/samgdf>`_
+* Vishal Kuo `@vishalkuo <https://github.com/vishalkuo>`_
 
-Thanks to all who have contributed!

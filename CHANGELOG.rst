@@ -38,3 +38,11 @@ Changed:
 Removed:
 
     * The poll_until_done method has been removed from live query jobs, as this does not make conceptual sense to do, in the same manner as a static query job.
+
+0.2.3 (2021-08-13)
+******************
+Smaller bugfixes
+Changed:
+
+    * Fix urls in docstrings in HumioClient.py
+    * Propagate kwargs to poll functions in QueryJob.py
