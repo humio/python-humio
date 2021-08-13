@@ -285,7 +285,7 @@ class HumioClient(BaseHumioClient):
     def _ingest_json_data(self, json_elements=None, **kwargs):
         """
         Ingest structured json data to repository.
-        Structure of ingested data is discussed in: https://docs.humio.com/api/ingest/#structured-data
+        Structure of ingested data is discussed in: https://docs.humio.com/reference/api/ingest/#structured-data
 
         :param messages: A list of event strings.
         :type messages: list(string), optional
@@ -320,6 +320,7 @@ class HumioClient(BaseHumioClient):
     ):
         """
         Ingest unstructred messages to repository.
+        Structure of ingested data is discussed in: https://docs.humio.com/reference/api/ingest/#parser
 
         :param messages: A list of event strings.
         :type messages: list(string), optional
@@ -612,7 +613,7 @@ class HumioIngestClient(BaseHumioClient):
     def _ingest_json_data(self, json_elements=None, **kwargs):
         """
         Ingest structured json data to repository.
-        Structure of ingested data is discussed in: https://docs.humio.com/api/ingest/#structured-data
+        Structure of ingested data is discussed in: https://docs.humio.com/reference/api/ingest/#structured-data
 
         :param json_elements: Structured data that can be parsed to a json string.
         :type json_elements: str
@@ -641,7 +642,7 @@ class HumioIngestClient(BaseHumioClient):
     ):
         """
         Ingest unstructred messages to repository.
-        Structure of ingested data is discussed in: https://docs.humio.com/api/ingest/#structured-data
+        Structure of ingested data is discussed in: https://docs.humio.com/reference/api/ingest/#parser
 
         :param messages: A list of event strings.
         :type messages: list(string), optional
