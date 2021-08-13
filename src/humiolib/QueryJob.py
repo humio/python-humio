@@ -158,9 +158,9 @@ class StaticQueryJob(BaseQueryJob):
         if not self.more_segments_can_be_polled:
             raise HumioQueryJobExhaustedException()
         
-        return super().poll()
+        return super().poll(**kwargs)
 
-    def poll_until_done(self):
+    def poll_until_done(self, **kwargs):
         """
         Create generator for yielding poll results
 
@@ -168,9 +168,9 @@ class StaticQueryJob(BaseQueryJob):
         :rtype: Generator
         """
 
-        yield self.poll()
+        yield self.poll(**kwargs)
         while self.more_segments_can_be_polled:
-            yield self.poll()
+            yield self.poll(**kwargs)
 
 
 class LiveQueryJob(BaseQueryJob):
