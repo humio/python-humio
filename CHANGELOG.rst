@@ -46,3 +46,11 @@ Changed:
 
     * Fix urls in docstrings in HumioClient.py
     * Propagate kwargs to poll functions in QueryJob.py
+
+0.2.4 (2022-08-15)
+******************
+Smaller file related bugfixes
+Changed:
+
+    * upload_file function no longer attempts a cast to json 
+    * list_files function now works on newer versions of humio
