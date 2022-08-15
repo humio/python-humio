@@ -518,7 +518,8 @@ class HumioClient(BaseHumioClient):
         with open(filepath, "rb") as f:
             return self.webcaller.call_rest("post", endpoint, files={"file": f}, headers=headers)
 
-    # The uploaded files endpoint currently doesn't return JSON. In the
+    # Wrap method to be pythonic
+    # The uploaded files endpoint currently doesn't return JSON, thus this function doesn't attempt to cast to json.
     def upload_file(self, filepath):
         return self._upload_file(filepath)
 
