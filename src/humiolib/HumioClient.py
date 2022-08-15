@@ -532,10 +532,6 @@ class HumioClient(BaseHumioClient):
         """
 
         headers = self._default_user_headers
-        print( "query {{searchDomain(name: {}){{files {{nameAndPath {{path, name}}}}}}".format(
-                json.dumps(self.repository)
-            ))
-
         request = {
             "query": "query {{searchDomain(name: {}){{files {{nameAndPath {{path, name}} }} }} }}".format(
                 json.dumps(self.repository)
