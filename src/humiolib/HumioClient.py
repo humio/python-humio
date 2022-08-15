@@ -509,8 +509,8 @@ class HumioClient(BaseHumioClient):
         :param filepath: Path to file.
         :type filepath: string
 
-        :return: Response to web request as json string
-        :rtype: str
+        :return: Response to web request
+        :rtype: Response
         """
 
         endpoint = "dataspaces/{}/files".format(self.repository)
@@ -518,8 +518,9 @@ class HumioClient(BaseHumioClient):
         with open(filepath, "rb") as f:
             return self.webcaller.call_rest("post", endpoint, files={"file": f}, headers=headers)
 
-    # Wrap method to be pythonic
-    upload_file = WebCaller.response_as_json(_upload_file)
+    # The uploaded files endpoint currently doesn't return JSON. In the
+    def upload_file(self, filepath):
+        return self._upload_file(filepath)
 
     def _list_files(self):
         """
@@ -530,8 +531,12 @@ class HumioClient(BaseHumioClient):
         """
 
         headers = self._default_user_headers
+        print( "query {{searchDomain(name: {}){{files {{nameAndPath {{path, name}}}}}}".format(
+                json.dumps(self.repository)
+            ))
+
         request = {
-            "query": "query {{listUploadedFiles(name: {})}}".format(
+            "query": "query {{searchDomain(name: {}){{files {{nameAndPath {{path, name}} }} }} }}".format(
                 json.dumps(self.repository)
             ),
             "variables": None,
@@ -540,7 +545,7 @@ class HumioClient(BaseHumioClient):
 
     def list_files(self):
         resp = self._list_files()
-        return resp.json()["data"]["listUploadedFiles"]
+        return resp.json()["data"]["searchDomain"]["files"]
 
     def _get_file(self, file_name):
         """

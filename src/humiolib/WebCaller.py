@@ -105,7 +105,7 @@ class WebCaller:
         :param func: Function to be wrapped.
         :type func: Function
 
-        :return: Result of function, parsed into python objects from jso
+        :return: Result of function, parsed into python objects from json
         :rtype: dict
         """
         @functools.wraps(func)
