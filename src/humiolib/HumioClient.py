@@ -4,6 +4,7 @@ from humiolib.WebCaller import WebCaller, WebStreamer
 from humiolib.QueryJob import StaticQueryJob, LiveQueryJob
 from humiolib.HumioExceptions import HumioConnectionException
 
+
 class BaseHumioClient():
     """
     Base class for other client types, is not meant to be instantiated
@@ -56,7 +57,7 @@ class BaseHumioClient():
             if v is not None
         )
 
-    
+
 class HumioClient(BaseHumioClient):
     """
     A Humio client that gives full access to the underlying API.
@@ -81,11 +82,10 @@ class HumioClient(BaseHumioClient):
         super().__init__(base_url)
         self.repository = repository
         self.user_token = user_token
-        
 
     @property
     def _default_user_headers(self):
-        """ 
+        """
         :return: Default headers used for web requests
         :rtype: dict
         """
@@ -107,7 +107,6 @@ class HumioClient(BaseHumioClient):
                 "base_url": self.base_url,
             }
         )
-
 
     def _streaming_query(
         self,
@@ -152,13 +151,12 @@ class HumioClient(BaseHumioClient):
 
         data.update(raw_data)
 
-
         connection = self.webcaller.call_rest(
             "post", endpoint, data=json.dumps(data), headers=headers, stream=True, **kwargs
         )
 
         return WebStreamer(connection)
-    
+
     # Wrap method to be pythonic
     def streaming_query(
         self,
@@ -213,7 +211,6 @@ class HumioClient(BaseHumioClient):
 
         for event in res:
             yield json.loads(event.decode(encoding))
-                
 
     def create_queryjob(
         self,
@@ -230,7 +227,7 @@ class HumioClient(BaseHumioClient):
         Creates a queryjob on Humio, which executes asynchronously of the calling code.
         The returned QueryJob instance can be used to get the query results at a later time.
         Queryjobs are good to use for live queries, or static queries that return smaller
-        amounts of data. 
+        amounts of data.
 
         :param query_string: Humio query
         :type query_string: str
@@ -246,7 +243,7 @@ class HumioClient(BaseHumioClient):
         :type argument: dict(string->string), optional
         :param raw_data: Additional arguments to add to POST body under other keys
         :type raw_data: dict(string->string), optional
-        
+
         :return:  An instance that grants access to the created queryjob and associated results
         :rtype: QueryJob
         """
@@ -273,14 +270,13 @@ class HumioClient(BaseHumioClient):
             data.update(raw_data)
 
         query_id = self.webcaller.call_rest(
-            "post", endpoint,  data=json.dumps(data), headers=headers, **kwargs
-            ).json()['id']
-        
+            "post", endpoint, data=json.dumps(data), headers=headers, **kwargs
+        ).json()['id']
+
         if is_live:
             return LiveQueryJob(query_id, self.base_url, self.repository, self.user_token)
         else:
             return StaticQueryJob(query_id, self.base_url, self.repository, self.user_token)
-
 
     def _ingest_json_data(self, json_elements=None, **kwargs):
         """
@@ -299,7 +295,7 @@ class HumioClient(BaseHumioClient):
         :return: Response to web request as json string
         :rtype: str
         """
-        
+
         if json_elements is None:
             json_elements = []
 
@@ -343,8 +339,8 @@ class HumioClient(BaseHumioClient):
         endpoint = "dataspaces/{}/ingest-messages".format(self.repository)
 
         obj = self._create_unstructured_data_object(
-                messages, parser=parser, fields=fields, tags=tags
-            )
+            messages, parser=parser, fields=fields, tags=tags
+        )
 
         return self.webcaller.call_rest(
             "post", endpoint, data=json.dumps([obj]), headers=headers, **kwargs
@@ -468,7 +464,7 @@ class HumioClient(BaseHumioClient):
             "query": "query {organizations{id, name, description}}",
             "variables": None,
         }
-        
+
         return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
 
     # Wrap method to be pythonic
@@ -510,11 +506,11 @@ class HumioClient(BaseHumioClient):
         :type filepath: string
 
         :return: Response to web request
-        :rtype: Response
+        :rtype: Response Object
         """
 
         endpoint = "dataspaces/{}/files".format(self.repository)
-        headers = {"Authorization": "Bearer {}".format(self.user_token)} # Not using default headers as files are sent
+        headers = {"Authorization": "Bearer {}".format(self.user_token)}  # Not using default headers as files are sent
         with open(filepath, "rb") as f:
             return self.webcaller.call_rest("post", endpoint, files={"file": f}, headers=headers)
 
@@ -523,12 +519,44 @@ class HumioClient(BaseHumioClient):
     def upload_file(self, filepath):
         return self._upload_file(filepath)
 
+    def _create_file(self, file_name):
+        """
+        Create new file.
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation($fileName : String!, $repo : String!){newFile(fileName: $fileName, name: $repo){nameAndPath { name, path}}}",
+            "variables": {"fileName": file_name, "repo": self.repository},
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def create_file(self, file_name):
+        """
+        Create new file.
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._create_file(file_name)
+        return resp.json()["data"]
+
     def _list_files(self):
         """
         List uploaded files on repository
 
-        :return: Response to web request as json string
-        :rtype: str
+        :return: Response to web request
+        :rtype: Response Object
         """
 
         headers = self._default_user_headers
@@ -541,8 +569,79 @@ class HumioClient(BaseHumioClient):
         return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
 
     def list_files(self):
+        """
+        List uploaded files on repository
+
+        :return: Response to web request as json string
+        :rtype: str
+        """
+
         resp = self._list_files()
         return resp.json()["data"]["searchDomain"]["files"]
+
+    def _get_file_content(self, file_name, offset, limit, filter_string=None):
+        """
+        Get the contents of a file
+
+        :param file_name: Name of file.
+        :type name: string
+
+        :param offset: Starting index to replace the old rows with the updated ones.
+        :type offset: int
+
+        :param limit: Used to find when to stop replacing rows, by adding the limit to the offset
+        :type limit: int
+
+        :param filter_string: Used to apply a filter string
+        :type filter_string: string, optional
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+
+        if filter_string is not None:
+            request = {
+                "query": "query {{"
+                            "getFileContent(name: {}, fileName: \"{}\", offset: {}, limit: {}, filterString: \"{}\") {{ "
+                                "totalLinesCount, limit, offset, headers, lines}} "
+                            "}}".format(json.dumps(self.repository), file_name, offset, limit, filter_string),
+                "variables": None,
+            }
+        else:
+            request = {
+                "query": "query {{"
+                            "getFileContent(name: {}, fileName: \"{}\", offset: {}, limit: {}) {{ "
+                                "totalLinesCount, limit, offset, headers, lines}} "
+                            "}}".format(json.dumps(self.repository), file_name, offset, limit),
+                "variables": None,
+            }
+
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def get_file_content(self, filename, offset=0, limit=200, filter_string=None):
+        """
+        Get the contents of a file
+
+        :param file_name: Name of file.
+        :type name: string
+
+        :param offset: Starting index to replace the old rows with the updated ones.
+        :type offset: int
+
+        :param limit: Used to find when to stop replacing rows, by adding the limit to the offset
+        :type limit: int
+
+        :param filter_string: Used to apply a filter string
+        :type filter_string: string, optional
+
+        :return: Response to web request as json string
+        :rtype: str
+        """
+
+        resp = self._get_file_content(filename, offset=offset, limit=limit, filter_string=filter_string)
+        return resp.json()["data"]
 
     def _get_file(self, file_name):
         """
@@ -552,13 +651,22 @@ class HumioClient(BaseHumioClient):
         :type file_name: string
 
         :return: Response to web request as json string
-        :rtype: str
+        :rtype: Response Object
         """
         endpoint = "dataspaces/{}/files/{}".format(self.repository, file_name)
-        headers = {"Authorization": "Bearer {}".format(self.user_token)} # Not using default headers as files are sent
+        headers = {"Authorization": "Bearer {}".format(self.user_token)}  # Not using default headers as files are sent
         return self.webcaller.call_rest("get", endpoint, headers=headers)
 
     def get_file(self, file_name, encoding=None):
+        """
+        Get specific file on repository
+
+        :param file_name: Name of file to get.
+        :type file_name: string
+
+        :return: Response to web request as json string
+        :rtype: str
+        """
         resp = self._get_file(file_name)
         raw_data = resp.content
         if encoding is None:
@@ -566,11 +674,130 @@ class HumioClient(BaseHumioClient):
         else:
             return raw_data.decode("utf-8")
 
+    def _delete_file(self, file_name):
+        """
+        Delete an existing file.
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation($fileName : String!, $repo : String!){removeFile(fileName: $fileName, name: $repo){ __typename}}",
+            "variables": {"fileName": file_name, "repo": self.repository},
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def delete_file(self, file_name):
+        """
+        Delete an existing file.
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :return: Response to web request as json string
+        :rtype: str
+        """
+
+        resp = self._delete_file(file_name)
+        return resp.json()["data"]
+
+    def _update_file_contents(self, file_name, file_headers, changed_rows, column_changes=[], offset=0, limit=200):
+        """
+        Add contents to a file
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :param file_headers: Headers of the file
+        :type file_headers: list
+
+        :param changed_rows: Rows within the offset and limit to overwrite existing rows
+        :type changed_rows: list
+
+        :param column_changes: Column changes that will be applied to all rows in the file
+        :type column_changes: list, optional
+
+        :param offset: Starting index to replace the old rows with the updated ones.
+        :type offset: int, optional
+
+        :param limit: Used to find when to stop adding rows, by adding the limit to the offset
+        :type limit: int, optional
+
+        :return: Response data to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation ($fileName: String!, $name: String!, $changedRows: [[String!]!]!, $headers: [String!]!, $columnChanges: [ColumnChange!]!, $limit: Int, $offset: Int) {updateFile(limit: $limit, offset: $offset, fileName: $fileName, name: $name, changedRows: $changedRows, headers: $headers, columnChanges: $columnChanges) {offset, limit, totalLinesCount, headers, lines, nameAndPath {name, path } } }",
+            "variables": {"name": self.repository, "fileName": file_name, "changedRows": changed_rows,
+                          "headers": file_headers,
+                          "columnChanges": column_changes, "offset": offset, "limit": limit}
+        }
+
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def add_file_contents(self, file_name, file_headers, changed_rows, column_changes=[], offset=0, limit=200):
+        """
+        Add contents to a file
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :param file_headers: Headers of the file
+        :type file_headers: list
+
+        :param changed_rows: Rows within the offset and limit to overwrite existing rows
+        :type changed_rows: list
+
+        :param column_changes: Column changes that will be applied to all rows in the file
+        :type column_changes: list, optional
+
+        :param offset: Starting index to replace the old rows with the updated ones.
+        :type offset: int, optional
+
+        :param limit: Used to determine when to stop replacing rows, by adding the limit to the offset
+        :type limit: int, optional
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._update_file_contents(file_name, file_headers, changed_rows, column_changes, offset, limit)
+        return resp.json()["data"]
+
+    def remove_file_contents(self, file_name, offset=0, limit=200):
+        """
+        Remove contents of a file
+
+        :param file_name: Name of file
+        :type file_name: string
+
+        :param offset: Starting index to replace the old rows with the updated ones.
+        :type offset: int, optional
+
+        :param limit: Used to find when to stop replacing rows, by adding the limit to the offset
+        :type limit: int, optional
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._update_file_contents(file_name, file_headers=[], offset=offset, limit=limit, changed_rows=[],
+                                          column_changes=[])
+        return resp.json()["data"]
+
 
 class HumioIngestClient(BaseHumioClient):
     """
     A Humio client that is used exclusivly for ingesting data
     """
+
     def __init__(
         self,
         ingest_token,
@@ -588,7 +815,7 @@ class HumioIngestClient(BaseHumioClient):
 
     @property
     def _default_ingest_headers(self):
-        """ 
+        """
         :return: Default headers used for web requests
         :rtype: dict
         """
@@ -619,7 +846,7 @@ class HumioIngestClient(BaseHumioClient):
 
         :param json_elements: Structured data that can be parsed to a json string.
         :type json_elements: str
-        
+
         :return: Response to web request as json string
         :rtype: str
         """
@@ -658,20 +885,20 @@ class HumioIngestClient(BaseHumioClient):
         :return: Response to web request as json string
         :rtype: str
         """
-        
+
         if messages is None:
             messages = []
 
         headers = self._default_ingest_headers
         headers.update(kwargs.pop("headers", {}))
 
-        endpoint = "ingest/humio-unstructured" 
+        endpoint = "ingest/humio-unstructured"
 
         obj = self._create_unstructured_data_object(
-                messages, parser=parser, fields=fields, tags=tags
-            )
+            messages, parser=parser, fields=fields, tags=tags
+        )
 
-        return self.webcaller.call_rest("post", endpoint, data=json.dumps([obj]), headers=headers) 
+        return self.webcaller.call_rest("post", endpoint, data=json.dumps([obj]), headers=headers)
 
     # Wrap method to be pythonic
     ingest_messages = WebCaller.response_as_json(_ingest_messages)
