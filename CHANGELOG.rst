@@ -59,4 +59,5 @@ Changed:
 ******************
 Expand file functionality
 Changed:
+
     * Added additional endpoints for manipulating files via GraphQL
