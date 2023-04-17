@@ -102,33 +102,33 @@ While the HumioClient can also be used for ingesting data, this is mainly meant 
  
 .. code-block:: python
 
-  from humiolib.HumioClient import HumioIngestClient
+   from humiolib.HumioClient import HumioIngestClient
  
- # Creating the client
- client = HumioIngestClient(
-    base_url= "https://cloud.humio.com",
-    ingest_token="*****")
- 
- # Ingesting Unstructured Data
- messages = [
-       "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
-       "192.168.1..21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013"
-   ]
- 
- client.ingest_messages(messages) 
- 
- # Ingesting Structured Data
- structured_data = [
-       {
-           "tags": {"host": "server1" },
-           "events": [
-               {
-                   "timestamp": "2020-03-23T00:00:00+00:00",
-                   "attributes": {"key1": "value1", "key2": "value2"}      
-               }
-           ]
-       }
-   ]
- 
- client.ingest_json_data(structured_data)
+   # Creating the client
+   client = HumioIngestClient(
+      base_url= "https://cloud.humio.com",
+      ingest_token="*****")
+   
+   # Ingesting Unstructured Data
+   messages = [
+         "192.168.1.21 - user1 [02/Nov/2017:13:48:26 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.015 664 0.015",
+         "192.168.1..21 - user2 [02/Nov/2017:13:49:09 +0000] \"POST /humio/api/v1/ingest/elastic-bulk HTTP/1.1\" 200 0 \"-\" \"useragent\" 0.013 565 0.013"
+      ]
+   
+   client.ingest_messages(messages) 
+   
+   # Ingesting Structured Data
+   structured_data = [
+         {
+            "tags": {"host": "server1" },
+            "events": [
+                  {
+                     "timestamp": "2020-03-23T00:00:00+00:00",
+                     "attributes": {"key1": "value1", "key2": "value2"}      
+                  }
+            ]
+         }
+      ]
+   
+   client.ingest_json_data(structured_data)
  
