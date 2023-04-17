@@ -54,3 +54,9 @@ Changed:
 
     * upload_file function no longer attempts a cast to json 
     * list_files function now works on newer versions of humio
+
+0.2.5 (2023-04-17)
+******************
+Expand file functionality
+Changed:
+    * Added additional endpoints for manipulating files via GraphQL

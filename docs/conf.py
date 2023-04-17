@@ -20,7 +20,7 @@ project = "humiolib"
 year = "2020"
 author = "Humio ApS"
 copyright = "{0}, {1}".format(year, author)
-version = "0.2.4"
+version = "0.2.5"
 
 pygments_style = "trac"
 templates_path = ["."]
