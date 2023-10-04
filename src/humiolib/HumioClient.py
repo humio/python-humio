@@ -791,6 +791,149 @@ class HumioClient(BaseHumioClient):
         resp = self._update_file_contents(file_name, file_headers=[], offset=offset, limit=limit, changed_rows=[],
                                           column_changes=[])
         return resp.json()["data"]
+    
+
+    def _create_saved_query(self, query_name, query_string):
+        """
+        Create new saved query in the current repository.
+
+        :param query_name: Name of saved query
+        :type query_name: string
+
+        :param query_string: Saved query content
+        :type query_string: string
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation($input : CreateSavedQueryInput!){createSavedQuery(input: $input){savedQuery{id, name}}}",
+            "variables": {"input": {"name": query_name, "viewName": self.repository, "queryString": query_string}},
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def create_saved_query(self, query_name, query_string):
+        """
+        Create new saved query in the current repository.
+
+        :param query_name: Name of saved query
+        :type query_name: string
+
+        :param query_string: Saved query content
+        :type query_string: string
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._create_saved_query(query_name, query_string)
+        return resp.json()["data"]
+
+    def _list_saved_queries(self):
+        """
+        List saved queries on repository
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "query {{repository(name: {}){{savedQueries {{ id, name, displayName, query {{queryString}} }} }} }}".format(
+                json.dumps(self.repository)
+            ),
+            "variables": None,
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def list_saved_queries(self):
+        """
+        List saved queries on repository
+
+        :return: Response to web request as json string
+        :rtype: str
+        """
+
+        resp = self._list_saved_queries()
+        return resp.json()["data"]["repository"]["savedQueries"]
+
+    def _update_saved_query(self, query_id, updated_query_name,  updated_query_string):
+        """
+        Update the saved query with the given id in the current repository.
+
+        :param query_id: ID of saved query to update
+        :type query_id: string
+
+        :param updated_query_name: Updated name of saved query
+        :type updated_query_name: string
+
+        :param updated_query_string: Updated content of the saved query
+        :type updated_query_string: string
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation($input : UpdateSavedQueryInput!){updateSavedQuery(input: $input){savedQuery{id, name}}}",
+            "variables": {"input": {"id": query_id, "name": updated_query_name, "viewName": self.repository, "queryString": updated_query_string}},
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def update_saved_query(self, query_id, updated_query_name,  updated_query_string):
+        """
+        Update the saved query with the given id in the current repository.
+
+        :param query_id: ID of saved query to update
+        :type query_id: string
+
+        :param updated_query_name: Updated name of saved query
+        :type updated_query_name: string
+
+        :param updated_query_string: Updated content of the saved query
+        :type updated_query_string: string
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._update_saved_query(query_id, updated_query_name, updated_query_string)
+        return resp.json()["data"]
+
+    def _delete_saved_query(self, query_id):
+        """
+        Delete the saved query with the given id from the current repository.
+
+        :param query_id: ID of saved query to update
+        :type query_id: string
+
+        :return: Response to web request
+        :rtype: Response Object
+        """
+
+        headers = self._default_user_headers
+        request = {
+            "query": "mutation($input : DeleteSavedQueryInput!){deleteSavedQuery(input: $input){savedQuery{id, name}}}",
+            "variables": {"input": {"id": query_id, "viewName": self.repository}},
+        }
+        return self.webcaller.call_graphql(headers=headers, data=json.dumps(request))
+
+    def delete_saved_query(self, query_id):
+        """
+        Delete the saved query with the given id from the current repository.
+
+        :param query_id: ID of saved query to update
+        :type query_id: string
+
+        :return: Response data to web request as json string
+        :rtype: str
+        """
+
+        resp = self._delete_saved_query(query_id)
+        return resp.json()["data"]
 
 
 class HumioIngestClient(BaseHumioClient):
