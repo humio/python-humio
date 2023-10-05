@@ -61,3 +61,11 @@ Expand file functionality
 Changed:
 
     * Added additional endpoints for manipulating files via GraphQL
+
+
+0.2.6 (2023-10-05)
+******************
+Add 'Saved Query' Support
+Changed:
+
+    * Added additional endpoints for managing saved queries
