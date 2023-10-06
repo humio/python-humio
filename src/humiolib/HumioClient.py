@@ -832,7 +832,7 @@ class HumioClient(BaseHumioClient):
 
     def _list_saved_queries(self):
         """
-        List saved queries on repository
+        List saved queries on repository or view
 
         :return: Response to web request
         :rtype: Response Object
@@ -840,7 +840,7 @@ class HumioClient(BaseHumioClient):
 
         headers = self._default_user_headers
         request = {
-            "query": "query {{repository(name: {}){{savedQueries {{ id, name, displayName, query {{queryString}} }} }} }}".format(
+            "query": "query {{searchDomain(name: {}){{savedQueries {{ id, name, displayName, query {{queryString}} }} }} }}".format(
                 json.dumps(self.repository)
             ),
             "variables": None,
@@ -849,14 +849,14 @@ class HumioClient(BaseHumioClient):
 
     def list_saved_queries(self):
         """
-        List saved queries on repository
+        List saved queries on repository or view
 
         :return: Response to web request as json string
         :rtype: str
         """
 
         resp = self._list_saved_queries()
-        return resp.json()["data"]["repository"]["savedQueries"]
+        return resp.json()["data"]["searchDomain"]["savedQueries"]
 
     def _update_saved_query(self, query_id, updated_query_name,  updated_query_string):
         """
